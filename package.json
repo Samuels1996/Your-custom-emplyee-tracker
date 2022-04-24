@@ -1,0 +1,24 @@
+{
+  "name": "your-custom-emplyee-tracker",
+  "version": "1.0.0",
+  "description": "This is a system that uses a database and sql so that you can update your employees!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Samuels1996/Your-custom-emplyee-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Samuels1996/Your-custom-emplyee-tracker/issues"
+  },
+  "homepage": "https://github.com/Samuels1996/Your-custom-emplyee-tracker#readme",
+  "dependencies": {
+    "inquirer": "^8.2.2",
+    "mysql2": "^2.3.3"
+  }
+}
