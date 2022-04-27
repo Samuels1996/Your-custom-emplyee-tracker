@@ -8,13 +8,14 @@ CREATE TABLE department (
     department_name VARCHAR(45)
 );
 
-
-
 CREATE TABLE role (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(30), 
-    
-)
+    department_id INT NOT NULL,
+    FOREIGN KEY (id) 
+    REFERENCES department(id)
+    ON DELETE SET NULL
+);
 
 CREATE TABLE employee (
     id INT PRIMARY KEY, 

@@ -1,6 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const { allowedNodeEnvironmentFlags } = require('process');
+require('console.table');
 
 init();
 
