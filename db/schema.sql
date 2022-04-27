@@ -14,7 +14,7 @@ CREATE TABLE role (
     department_id INT NOT NULL,
     FOREIGN KEY (id) 
     REFERENCES department(id)
-    ON DELETE SET NULL
+    
 );
 
 CREATE TABLE employee (
@@ -22,6 +22,6 @@ CREATE TABLE employee (
     first_name VARCHAR(30) NOT NULL, 
     last_name VARCHAR(30) NOT NULL, 
     role_id INT NOT NULL,
-    
+    ON DELETE SET NULL
 );
 

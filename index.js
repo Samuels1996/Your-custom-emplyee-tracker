@@ -2,6 +2,18 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 require('console.table');
 
+const mysql = require('mysql2');
+
+const connection = mysql.createConnection({
+    host: "localhost",
+    // Your username
+    user: "root",
+    // Your password
+    password: "root",
+    database: "employees"
+  });
+  
+
 init();
 
 function init() {
