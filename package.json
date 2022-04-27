@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Samuels1996/Your-custom-emplyee-tracker#readme",
   "dependencies": {
+    "console.table": "^0.10.0",
     "inquirer": "^8.2.2",
     "mysql2": "^2.3.3"
   }
