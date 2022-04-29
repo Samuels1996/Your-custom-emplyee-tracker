@@ -1,7 +1,7 @@
 const fs = require('fs');
-const { prompt } = require('inquirer');
+const inquirer = require('inquirer');
 require('console.table');
-const db = require('./db');
+// const db = require('./db');
 
 const mysql = require('mysql2');
 
@@ -11,6 +11,7 @@ const db = mysql.createConnection({
     user: "root",
 
     password: "root",
+    
     database: "employees"
   });
   
@@ -63,7 +64,7 @@ function init() {
 }
 
 function viewEmployees() {
-    db.viewAllEmployees()
+    db.viewEmployees()
     .then(([rows]) => {
         let employees = rows;
         console.log(employees);
@@ -99,7 +100,10 @@ function addEmployee() {
 }
 
 function viewRoles() {
-    
+    db.query('SELECT * FROM role', function (err, res) {
+        console.table(res);
+        init();
+    });
 }
 
 function updateRole() {
