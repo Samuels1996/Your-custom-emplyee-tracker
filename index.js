@@ -1,14 +1,15 @@
 const fs = require('fs');
-const inquirer = require('inquirer');
+const { prompt } = require('inquirer');
 require('console.table');
+const db = require('./db');
 
 const mysql = require('mysql2');
 
-const connection = mysql.createConnection({
+const db = mysql.createConnection({
     host: "localhost",
-    // Your username
+
     user: "root",
-    // Your password
+
     password: "root",
     database: "employees"
   });
@@ -21,7 +22,7 @@ function init() {
         {
             type: 'list',
             name: 'options',
-            message: 'What would you like to do?',
+            message: 'Please make a selection',
             choices: [
                 'View all employees',
                 'Add role',
@@ -62,11 +63,35 @@ function init() {
 }
 
 function viewEmployees() {
-    
+    db.viewAllEmployees()
+    .then(([rows]) => {
+        let employees = rows;
+        console.log(employees);
+    })
+    .then(() => loadMainPrompt());
 }
 
 function addRole() {
-    
+    inquirer .prompt([
+        { type: 'input',
+          name: 'roleTitle',
+          message: 'What is the name of the role title?'},
+        { type: 'input',
+          name: 'departmentId',
+          message: 'What is the department ID'},
+        { type: 'input',
+          name: 'roleSalary',
+          message: 'What is the salary for this role?'},
+    ]) .then((res) => {
+        db.query('Would you like to add this role?', {
+            title: res.title,
+            department_id: res.departmentId,
+            salary: res.salary
+        }, function (err, res) {
+            console.table(res);
+            viewRoles();
+        });
+    })
 }
 
 function addEmployee() {
