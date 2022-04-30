@@ -64,12 +64,11 @@ function init() {
 }
 
 function viewEmployees() {
-    db.viewEmployees()
-    .then(([rows]) => {
-        let employees = rows;
-        console.log(employees);
-    })
-    .then(() => loadMainPrompt());
+    db.query('SELECT * FROM employee', function (err, res) {
+    // .then(([rows]) => {
+    //     let employees = rows;
+        console.table(res);
+    });
 }
 
 function addRole() {
@@ -96,7 +95,14 @@ function addRole() {
 }
 
 function addEmployee() {
-    
+    inquirer.prompt([
+        { type: 'input',
+          name: 'employeeFirstName',
+          message: 'What is the employees first name?'},
+        { type: 'input',
+          name: 'employeeLastName',
+          message: 'What is the employees last name?'}
+    ]);
 }
 
 function viewRoles() {
@@ -111,10 +117,17 @@ function updateRole() {
 }
 
 function addDepartment() {
-    
+    inquirer.prompt([
+        { type: 'input',
+          name: 'departmentName',
+          message: 'What is the departments name?'},
+    ]);
 }
 
 function viewDepartments() {
-    
+    db.query('SELECT * FROM department', function (err, res) {
+        console.table(res);
+        init();
+    });
 }
 
