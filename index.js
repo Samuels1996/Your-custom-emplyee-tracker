@@ -1,6 +1,5 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-require('console.table');
 // const db = require('./db');
 
 const mysql = require('mysql2');
@@ -60,10 +59,10 @@ function init() {
 }
 
 function viewEmployees() {
-    db.query('SELECT * FROM employees', function (err, res) {
+    db.query('SELECT * FROM employee', function (err, result) {
     // .then(([rows]) => {
     //     let employees = rows;
-        console.table(res);
+        console.table(result);
         init();
     });
 };
@@ -84,8 +83,8 @@ function addRole() {
             title: res.title,
             department_id: res.departmentId,
             salary: res.salary
-        }, function (err, res) {
-            console.table(res);
+        }, function (err, result) {
+            console.table(result);
             viewRoles();
         });
     })
@@ -98,13 +97,20 @@ function addEmployee() {
           message: 'What is the employees first name?'},
         { type: 'input',
           name: 'employeeLastName',
-          message: 'What is the employees last name?'}
-    ]);
+          message: 'What is the employees last name?'},
+        { type: 'input',
+          name: 'empRole',
+          message: 'What is this employees role?'}
+    ]) .then((res) => {
+        db.query('Would you like to add this employee?', {
+
+        })
+    })
 }
 
 function viewRoles() {
-    db.query('SELECT * FROM role', function (err, res) {
-        console.table(res);
+    db.query('SELECT * FROM role', function (err, result) {
+        console.table(result);
         init();
     });
 }
@@ -126,8 +132,8 @@ function addDepartment() {
 }
 
 function viewDepartments() {
-    db.query('SELECT * FROM department', function (err, res) {
-        console.table(res);
+    db.query('SELECT * FROM department', function (err, result) {
+        console.table(result);
         init();
     });
 }
