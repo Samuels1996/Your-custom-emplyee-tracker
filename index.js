@@ -7,17 +7,13 @@ const mysql = require('mysql2');
 
 const db = mysql.createConnection({
     host: "localhost",
-
     user: "root",
-
     password: "root",
-    
     database: "employees"
-  });
-  
-
+  },
+  console.log(`Connected to database`)
+  );
 init();
-
 function init() {
     inquirer .prompt([
         {
@@ -60,16 +56,17 @@ function init() {
                 viewDepartments();
                 break;
         }
-    })
+    });
 }
 
 function viewEmployees() {
-    db.query('SELECT * FROM employee', function (err, res) {
+    db.query('SELECT * FROM employees', function (err, res) {
     // .then(([rows]) => {
     //     let employees = rows;
         console.table(res);
+        init();
     });
-}
+};
 
 function addRole() {
     inquirer .prompt([
@@ -113,7 +110,11 @@ function viewRoles() {
 }
 
 function updateRole() {
-    
+    inquirer.prompt([
+        { type: 'input',
+          name: 'employeeUpdate',
+          message: 'Which employee would you like to update?'}
+    ])
 }
 
 function addDepartment() {
